@@ -7,7 +7,10 @@
   <meta name="description" content="Join Ava and Bran for a weekend of camping, potluck dinner, games and music near Mt Robson, August 6–8, 2027.">
   <meta property="og:title" content="Ava &amp; Bran are getting married">
   <meta property="og:description" content="August 6–8, 2027. Camp, eat, play and dance with us near Mt Robson.">
-  <meta property="og:image" content="images/full/frame-smile.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://avanbran.site/">
+  <meta property="og:image" content="https://avanbran.site/images/hero/hero-landscape.jpg">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%94%EF%B8%8F%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,23 +21,24 @@
   <a class="skip-link" href="#details">Skip to details</a>
 
   <header class="hero">
-    <img class="hero__photo" src="images/full/frame-smile.jpg" alt="Ava and Bran smiling together inside a glowing ring of lights" fetchpriority="high">
+    <picture>
+      <source media="(orientation: portrait)" srcset="images/hero/hero-portrait.jpg">
+      <img class="hero__photo" src="images/hero/hero-landscape.jpg" width="2000" height="1334" alt="Ava and Bran smiling together in front of a wall of glowing lights" fetchpriority="high">
+    </picture>
     <nav class="site-nav" aria-label="Main">
       <a class="monogram" href="#top">A &amp; B</a>
       <ul>
-        <li class="nav-minor"><a href="#story">Our story</a></li>
-        <li class="nav-minor"><a href="#gallery">Photos</a></li>
         <li class="nav-minor"><a href="#details">Details</a></li>
         <li class="nav-minor"><a href="#schedule">Schedule</a></li>
-        <li class="nav-minor"><a href="#where">Where</a></li>
         <li><a href="#bring">Potluck &amp; games</a></li>
+        <li class="nav-minor"><a href="#story">About us</a></li>
         <li><a class="nav-rsvp" href="#rsvp">RSVP</a></li>
       </ul>
     </nav>
     <div class="hero__content" id="top">
       <h1 class="hero__names"><span>Ava</span><span><span class="amp">&amp;</span> Bran</span></h1>
       <p class="hero__when">August 6–8, 2027</p>
-      <p class="hero__where">Mt Robson area, near Jasper</p>
+      <p class="hero__where"><a id="hero-address" href="#details">Mt Robson, British Columbia</a></p>
       <p class="hero__count" id="countdown" aria-live="off"><strong id="days">&nbsp;</strong> <span>days to go</span></p>
       <br>
       <a class="btn" href="#rsvp">RSVP</a>
@@ -42,32 +46,96 @@
   </header>
 
   <main>
+    <section class="section" id="details">
+      <div class="section__inner">
+        <h2>The weekend</h2>
+        <p class="lede">A relaxed camping weekend. Come as you are.</p>
+        <dl class="facts">
+          <div>
+            <dt>Just a reception</dt>
+            <dd>Come celebrate with us. Gifts aren’t expected, but we’d love a dish for the potluck.</dd>
+          </div>
+          <div id="camp">
+            <dt>Camp or stay close</dt>
+            <dd>
+              <span id="address-line">Exact address coming soon.</span>
+              <a id="map-link" href="#camp" target="_blank" rel="noopener" hidden>See the area on Google Maps</a>
+            </dd>
+            <dd>We’ll book campsites from your RSVPs. Cabins at the venue are limited, so for a proper room try Valemount.</dd>
+          </div>
+          <div>
+            <dt>Saturday is potluck night</dt>
+            <dd>Games all morning and evening, with music after dark.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section section--schedule" id="schedule">
+      <div class="section__inner">
+        <h2>How it will go</h2>
+        <p class="lede">Loose on purpose. Exact times closer to the date.</p>
+        <div class="days">
+          <article>
+            <h3>Friday, August 6</h3>
+            <p>Arrive, set up camp, campfire in the evening.</p>
+          </article>
+          <article>
+            <h3>Saturday, August 7</h3>
+            <p>Games all morning. Potluck dinner at night, then more games and music.</p>
+          </article>
+          <article>
+            <h3>Sunday, August 8</h3>
+            <p>Slow breakfast, one more game, goodbyes.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--rsvp" id="rsvp">
+      <div class="section__inner">
+        <h2>RSVP</h2>
+        <p class="lede">Please reply by February 28. We’ll book your campsite from your answers.</p>
+        <p id="rsvp-soon" class="note">RSVPs open soon. Check back here.</p>
+        <div class="form-frame" id="rsvp-frame" hidden>
+          <iframe id="rsvp-iframe" title="RSVP form" loading="lazy">Loading…</iframe>
+        </div>
+        <p class="note" id="rsvp-fallback" hidden>Form not loading? <a id="rsvp-link" href="#rsvp" target="_blank" rel="noopener">Open it in a new tab</a>.</p>
+      </div>
+    </section>
+
+    <section class="section section--bring" id="bring">
+      <div class="section__inner">
+        <h2>Potluck and lawn games</h2>
+        <p class="lede">Saturday is potluck night. Add your dish so we don’t end up with twelve potato salads. Bring your favourite lawn game too, and we’ll set it up as a station for everyone.</p>
+        <p class="center"><a class="btn" id="signup-link" href="#bring" target="_blank" rel="noopener" hidden>Add your dish or game</a></p>
+        <p class="note center">Names and items on this list are public.</p>
+        <div class="signup" aria-live="polite">
+          <div>
+            <h3>On the table</h3>
+            <p class="summary" id="dish-summary"></p>
+            <ul class="signup__list" id="dish-list"><li class="empty">Loading the list…</li></ul>
+          </div>
+          <div>
+            <h3>On the lawn</h3>
+            <ul class="signup__list" id="game-list"><li class="empty">Loading the list…</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section class="section section--story" id="story">
       <div class="section__inner">
-        <h2>Our story</h2>
-        <div class="story">
-          <div class="story__text">
-            <p class="lede">We met in Victoria, BC on October 25, 2019, over tacos. It was supposed to be a get-to-know-each-other dinner. A few days later we turned it into a camping trip.</p>
-            <p>The plan was Bamfield. The reality was hours of Vancouver Island back roads, and we figured out too late that we’d forgotten most of the food and all the bedding we needed. Somehow we made a good team anyway. A kind older couple spotted us, took us across the channel by boat, and gave us a campsite on their private beach, looking out over the Pacific.</p>
-            <p>That weekend kicked everything off. Before long we’d bought our first home together, a live-aboard sailboat named Nyala, while Bran built his software company in downtown Victoria. Then Ava went after her dream of becoming a pilot in New Brunswick, and Bran followed soon after.</p>
-            <p class="lede">He asked, and she said yes. The proposal happened inside a tunnel of a million lights, with our dog right at our feet and a very surprised Ava.</p>
-            <p>There were happy tears, a long kiss, and a ring held up to the nearest camera. Then we sat in a giant red chair with Duke and tried to stop grinning.</p>
-            <p>Now we’re planning the party we actually want: a mountain weekend with the people we love, a long potluck table, and a lot of games.</p>
-          </div>
-          <ol class="moment" aria-label="The proposal, in three photos">
-            <li><img src="images/thumb/proposal-wide.jpg" alt="Bran down on one knee in a glowing tunnel of lights while Ava watches, with their dog beside him" loading="lazy" width="700" height="467"></li>
-            <li><img src="images/thumb/happy-tears.jpg" alt="Ava covering her face in happy tears while Bran grins at her" loading="lazy" width="700" height="467"></li>
-            <li><img src="images/thumb/kiss.jpg" alt="Ava and Bran kissing in front of a wall of golden lights" loading="lazy" width="700" height="467"></li>
-          </ol>
-        </div>
+        <h2>A little about us</h2>
+        <p class="lede">We met in Victoria, BC, then moved across the country to the Maritimes.</p>
+        <p class="story-text">We love camping, whether it’s Vancouver Island, Oregon, New York, northern BC, the Rockies, PEI, Newfoundland, Nova Scotia, or even the prairies in the dead of winter. So we’ve decided to celebrate our love with a camping trip. Please join us!</p>
       </div>
     </section>
 
     <section class="section section--gallery" id="gallery">
       <div class="section__inner">
         <h2>Engagement photos</h2>
-        <p class="lede">A few favourites from the night. Tap any photo to see it bigger.</p>
+        <p class="lede">Tap any photo to see it bigger.</p>
         <ul class="gallery">
           <li><a href="images/full/pink-hug-tall.jpg" data-full="images/full/pink-hug-tall.jpg"><img src="images/thumb/pink-hug-tall.jpg" alt="Ava and Bran hugging among pink and blue hanging lights" loading="lazy" width="467" height="700"></a></li>
           <li><a href="images/full/ring-wide.jpg" data-full="images/full/ring-wide.jpg"><img src="images/thumb/ring-wide.jpg" alt="Ava and Bran laughing as Ava shows off her ring" loading="lazy" width="700" height="467"></a></li>
@@ -81,99 +149,6 @@
           <li><a href="images/full/ring-close.jpg" data-full="images/full/ring-close.jpg"><img src="images/thumb/ring-close.jpg" alt="Ava and Bran cheek to cheek with her ring hand held up to the camera" loading="lazy" width="700" height="467"></a></li>
           <li><a href="images/full/cheek-close.jpg" data-full="images/full/cheek-close.jpg"><img src="images/thumb/cheek-close.jpg" alt="Ava smiling at the camera with her hand on Bran’s cheek" loading="lazy" width="700" height="467"></a></li>
         </ul>
-      </div>
-    </section>
-
-    <section class="section" id="details">
-      <div class="section__inner">
-        <h2>A weekend in the mountains</h2>
-        <p class="lede">We’re getting married, and we’d love you to camp, eat, play and dance with us. It’s relaxed, outdoorsy and very much come-as-you-are.</p>
-        <dl class="facts">
-          <div><dt>Friday to Sunday</dt><dd>August 6–8, 2027. Come for the whole weekend or just the day.</dd></div>
-          <div><dt>Camp or stay close</dt><dd>Most of us will be camping. Nearby lodging is an option too.</dd></div>
-          <div><dt>Potluck, games, music</dt><dd>Bring a dish to share. We’ll bring the lawn games and the speakers.</dd></div>
-        </dl>
-      </div>
-    </section>
-
-    <section class="section section--schedule" id="schedule">
-      <div class="section__inner">
-        <h2>How the weekend will go</h2>
-        <p class="lede">Loose on purpose. Show up when you can, join in when you feel like it. Exact times will land here closer to the date.</p>
-        <div class="days">
-          <article>
-            <h3>Friday, August 6</h3>
-            <p>Arrive, pitch your tent and find your people. We’ll have a campfire going in the evening.</p>
-          </article>
-          <article>
-            <h3>Saturday, August 7</h3>
-            <p>Lawn games and a lazy morning, then our celebration. After that comes the potluck dinner, followed by music into the night.</p>
-          </article>
-          <article>
-            <h3>Sunday, August 8</h3>
-            <p>A slow breakfast, a few more rounds of games, and goodbyes before everyone heads home.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--where" id="where">
-      <div class="section__inner">
-        <h2>Where to be, and where to sleep</h2>
-        <p class="lede">We’re celebrating in the mountains around Mt Robson, about 80 km west of Jasper. The exact site and directions will go up here as soon as they’re locked in.</p>
-        <div class="cols">
-          <div>
-            <h3>Camping</h3>
-            <p>Most of us will be camping. We’ll book campsites for everyone based on the RSVPs, so please reply early. There should be enough sites for all of us.</p>
-          </div>
-          <div>
-            <h3>Prefer a bed?</h3>
-            <p>Cabins at the venue are limited. If you want a proper room, check out Valemount and book early, because August is busy in the Rockies.</p>
-          </div>
-          <div>
-            <h3>The potluck</h3>
-            <p>Dinner is a potluck. Add your dish to the <a href="#bring">sign-up list</a> so we don’t end up with twelve potato salads.</p>
-          </div>
-        </div>
-        <h3 class="bring-title">What to bring</h3>
-        <ul class="bring">
-          <li>Camping gear, and a camp chair for the evenings</li>
-          <li>A warm layer, because mountain nights get cold even in August</li>
-          <li>A lawn game, a guitar, or a playlist</li>
-          <li>A refillable water bottle</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section section--rsvp" id="rsvp">
-      <div class="section__inner">
-        <h2>RSVP</h2>
-        <p class="lede">Please reply by February 28. We’ll book campsites based on your answers, so the sooner the better.</p>
-        <p id="rsvp-soon" class="note">RSVPs open soon. Check back here.</p>
-        <div class="form-frame" id="rsvp-frame" hidden>
-          <iframe id="rsvp-iframe" title="RSVP form" loading="lazy">Loading…</iframe>
-        </div>
-        <p class="note" id="rsvp-fallback" hidden>Form not loading? <a id="rsvp-link" href="#rsvp" target="_blank" rel="noopener">Open it in a new tab</a>.</p>
-      </div>
-    </section>
-
-    <section class="section section--bring" id="bring">
-      <div class="section__inner">
-        <h2>Potluck and lawn games</h2>
-        <p class="lede">Dinner is a potluck, and the weekend runs on lawn games. Add what you’re bringing so everyone can see what’s covered. Bring your favourite lawn game and we’ll set it up as a station for everyone to use.</p>
-        <p><a class="btn" id="signup-link" href="#bring" target="_blank" rel="noopener" hidden>Add your dish or game</a></p>
-        <p class="note">Names and items on this list are public.</p>
-        <div class="signup" aria-live="polite">
-          <div>
-            <h3>On the table</h3>
-            <p class="summary" id="dish-summary"></p>
-            <ul class="signup__list" id="dish-list"><li class="empty">Loading the list…</li></ul>
-          </div>
-          <div>
-            <h3>On the lawn</h3>
-            <ul class="signup__list" id="game-list"><li class="empty">Loading the list…</li></ul>
-          </div>
-        </div>
       </div>
     </section>
   </main>

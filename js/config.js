@@ -1,4 +1,8 @@
 window.SITE_CONFIG = {
+  // Venue address, shown in the hero and under "Camp or stay close". The Google Maps link is built from it.
+  venueAddress: "",
+  // Optional: paste a specific Google Maps link here to use instead of the automatic one
+  mapsUrl: "",
   // RSVP form: the ".../viewform" link from the form's Send button
   rsvpFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSd4RcYB3E9JDcdTw88gztPs8GHQSThAHe75iQo7dT41GsnEBg/viewform",
   // Potluck and lawn game sign-up form: the ".../viewform" link

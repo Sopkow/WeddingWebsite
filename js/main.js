@@ -153,3 +153,19 @@
       setMessage(gameList, 'The list isn’t loading right now. Please try again later.');
     });
 })();
+
+// Venue address and Google Maps link (set in js/config.js)
+(function () {
+  var cfg = window.SITE_CONFIG || {};
+  if (!cfg.venueAddress) return;
+  var url = cfg.mapsUrl || ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(cfg.venueAddress));
+  var hero = document.getElementById('hero-address');
+  hero.textContent = cfg.venueAddress;
+  hero.href = url;
+  hero.target = '_blank';
+  hero.rel = 'noopener';
+  document.getElementById('address-line').textContent = cfg.venueAddress;
+  var link = document.getElementById('map-link');
+  link.href = url;
+  link.hidden = false;
+})();
