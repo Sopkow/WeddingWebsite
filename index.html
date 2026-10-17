@@ -22,11 +22,13 @@
     <nav class="site-nav" aria-label="Main">
       <a class="monogram" href="#top">A &amp; B</a>
       <ul>
-        <li><a href="#story">Our story</a></li>
-        <li><a href="#gallery">Photos</a></li>
-        <li><a href="#details">Details</a></li>
-        <li><a href="#schedule">Schedule</a></li>
-        <li><a href="#where">Where</a></li>
+        <li class="nav-minor"><a href="#story">Our story</a></li>
+        <li class="nav-minor"><a href="#gallery">Photos</a></li>
+        <li class="nav-minor"><a href="#details">Details</a></li>
+        <li class="nav-minor"><a href="#schedule">Schedule</a></li>
+        <li class="nav-minor"><a href="#where">Where</a></li>
+        <li><a href="#bring">Potluck &amp; games</a></li>
+        <li><a class="nav-rsvp" href="#rsvp">RSVP</a></li>
       </ul>
     </nav>
     <div class="hero__content" id="top">
@@ -35,7 +37,7 @@
       <p class="hero__where">Mt Robson area, near Jasper</p>
       <p class="hero__count" id="countdown" aria-live="off"><strong id="days">&nbsp;</strong> <span>days to go</span></p>
       <br>
-      <a class="btn" href="#details">See the details</a>
+      <a class="btn" href="#rsvp">RSVP</a>
     </div>
   </header>
 
@@ -130,7 +132,7 @@
           </div>
           <div>
             <h3>The potluck</h3>
-            <p>Bring a dish to share. A sign-up will go on this page, so we don’t end up with twelve potato salads.</p>
+            <p>Dinner is a potluck. Add your dish to the <a href="#bring">sign-up list</a> so we don’t end up with twelve potato salads.</p>
           </div>
         </div>
         <h3 class="bring-title">What to bring</h3>
@@ -140,6 +142,38 @@
           <li>A lawn game, a guitar, or a playlist</li>
           <li>A refillable water bottle</li>
         </ul>
+      </div>
+    </section>
+
+    <section class="section section--rsvp" id="rsvp">
+      <div class="section__inner">
+        <h2>RSVP</h2>
+        <p class="lede">Please reply by February 28. We’ll book campsites based on your answers, so the sooner the better.</p>
+        <p id="rsvp-soon" class="note">RSVPs open soon. Check back here.</p>
+        <div class="form-frame" id="rsvp-frame" hidden>
+          <iframe id="rsvp-iframe" title="RSVP form" loading="lazy">Loading…</iframe>
+        </div>
+        <p class="note" id="rsvp-fallback" hidden>Form not loading? <a id="rsvp-link" href="#rsvp" target="_blank" rel="noopener">Open it in a new tab</a>.</p>
+      </div>
+    </section>
+
+    <section class="section section--bring" id="bring">
+      <div class="section__inner">
+        <h2>Potluck and lawn games</h2>
+        <p class="lede">Dinner is a potluck, and the weekend runs on lawn games. Add what you’re bringing so everyone can see what’s covered. Bring your favourite lawn game and we’ll set it up as a station for everyone to use.</p>
+        <p><a class="btn" id="signup-link" href="#bring" target="_blank" rel="noopener" hidden>Add your dish or game</a></p>
+        <p class="note">Names and items on this list are public.</p>
+        <div class="signup" aria-live="polite">
+          <div>
+            <h3>On the table</h3>
+            <p class="summary" id="dish-summary"></p>
+            <ul class="signup__list" id="dish-list"><li class="empty">Loading the list…</li></ul>
+          </div>
+          <div>
+            <h3>On the lawn</h3>
+            <ul class="signup__list" id="game-list"><li class="empty">Loading the list…</li></ul>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -156,6 +190,7 @@
     <p>Ava &amp; Bran, August 2027.</p>
   </footer>
 
+  <script src="js/config.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

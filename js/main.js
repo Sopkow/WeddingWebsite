@@ -36,3 +36,120 @@
     if (e.key === 'ArrowRight') show(current + 1);
   });
 })();
+
+// RSVP form embed
+(function () {
+  var cfg = window.SITE_CONFIG || {};
+  if (!cfg.rsvpFormUrl) return;
+  var sep = cfg.rsvpFormUrl.indexOf('?') === -1 ? '?' : '&';
+  document.getElementById('rsvp-iframe').src = cfg.rsvpFormUrl + sep + 'embedded=true';
+  document.getElementById('rsvp-link').href = cfg.rsvpFormUrl;
+  document.getElementById('rsvp-frame').hidden = false;
+  document.getElementById('rsvp-fallback').hidden = false;
+  document.getElementById('rsvp-soon').hidden = true;
+})();
+
+// Potluck and lawn game sign-up list (reads a published Google Sheet)
+(function () {
+  var cfg = window.SITE_CONFIG || {};
+  var dishList = document.getElementById('dish-list');
+  var gameList = document.getElementById('game-list');
+  var summary = document.getElementById('dish-summary');
+  if (!dishList || !gameList) return;
+
+  if (cfg.signupFormUrl) {
+    var add = document.getElementById('signup-link');
+    add.href = cfg.signupFormUrl;
+    add.hidden = false;
+  }
+
+  function setMessage(list, text) {
+    list.textContent = '';
+    var li = document.createElement('li');
+    li.className = 'empty';
+    li.textContent = text;
+    list.appendChild(li);
+  }
+
+  if (!cfg.signupSheetCsvUrl) {
+    setMessage(dishList, 'The sign-up list opens soon.');
+    setMessage(gameList, 'The sign-up list opens soon.');
+    return;
+  }
+
+  // Minimal CSV parser (handles quoted fields and commas inside quotes)
+  function parseCsv(text) {
+    var rows = [], row = [], field = '', inQuotes = false;
+    for (var i = 0; i < text.length; i++) {
+      var c = text[i];
+      if (inQuotes) {
+        if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
+        else if (c === '"') { inQuotes = false; }
+        else { field += c; }
+      } else if (c === '"') { inQuotes = true; }
+      else if (c === ',') { row.push(field); field = ''; }
+      else if (c === '\n' || c === '\r') {
+        if (c === '\r' && text[i + 1] === '\n') i++;
+        row.push(field); field = '';
+        if (row.length > 1 || row[0] !== '') rows.push(row);
+        row = [];
+      } else { field += c; }
+    }
+    if (field !== '' || row.length) { row.push(field); rows.push(row); }
+    return rows;
+  }
+
+  function col(header, word) {
+    for (var i = 0; i < header.length; i++) {
+      if (header[i].toLowerCase().indexOf(word) !== -1) return i;
+    }
+    return -1;
+  }
+
+  function render(list, items, emptyText) {
+    list.textContent = '';
+    if (!items.length) { setMessage(list, emptyText); return; }
+    items.forEach(function (it) {
+      var li = document.createElement('li');
+      var strong = document.createElement('strong');
+      strong.textContent = it.what;
+      li.appendChild(strong);
+      var meta = document.createElement('span');
+      var bits = [it.name];
+      if (it.details) bits.push(it.details);
+      meta.textContent = bits.join(', ');
+      li.appendChild(meta);
+      list.appendChild(li);
+    });
+  }
+
+  fetch(cfg.signupSheetCsvUrl, { cache: 'no-store' })
+    .then(function (r) { if (!r.ok) throw new Error('bad response'); return r.text(); })
+    .then(function (text) {
+      var rows = parseCsv(text);
+      var header = rows.shift() || [];
+      var iName = col(header, 'name'), iType = col(header, 'bringing'), iWhat = col(header, 'what is it'),
+          iCat = col(header, 'category'), iDet = col(header, 'details');
+      var dishes = [], games = [], cats = {};
+      rows.forEach(function (r) {
+        var what = (r[iWhat] || '').trim();
+        if (!what) return;
+        var item = { what: what, name: (r[iName] || '').trim(), details: (r[iDet] || '').trim() };
+        var type = (r[iType] || '').toLowerCase();
+        if (type.indexOf('game') !== -1) { games.push(item); }
+        else {
+          dishes.push(item);
+          var cat = (r[iCat] || '').trim().toLowerCase();
+          if (cat) cats[cat] = (cats[cat] || 0) + 1;
+        }
+      });
+      render(dishList, dishes, 'Nothing yet. Be the first to add a dish.');
+      render(gameList, games, 'No games yet. Bring your favourite.');
+      var parts = Object.keys(cats).map(function (k) { return k.charAt(0).toUpperCase() + k.slice(1) + ' (' + cats[k] + ')'; });
+      summary.textContent = parts.length ? 'So far: ' + parts.join(', ') + '.' : '';
+    })
+    .catch(function () {
+      setMessage(dishList, 'The list isn’t loading right now. Please try again later.');
+      setMessage(gameList, 'The list isn’t loading right now. Please try again later.');
+    });
+})();
