@@ -65,7 +65,7 @@ a { color: inherit; }
     linear-gradient(to top, rgba(22,38,42,.92) 0%, rgba(22,38,42,.55) 38%, rgba(22,38,42,.05) 70%),
     linear-gradient(to bottom, rgba(22,38,42,.55), transparent 22%);
 }
-.hero__content { position: relative; z-index: 2; padding: 0 var(--space) clamp(2rem, 6vw, 4.5rem); max-width: 80rem; }
+.hero__content { position: relative; z-index: 3; padding: 0 var(--space) clamp(2rem, 6vw, 4.5rem); max-width: 80rem; }
 .hero__names {
   margin: 0; font: 800 var(--step-hero)/.9 var(--font-display);
   letter-spacing: -.035em;
@@ -154,7 +154,8 @@ a { color: inherit; }
 .section--rsvp { background: var(--mist); }
 .note { max-width: var(--measure); font-size: var(--step--1); }
 .form-frame { margin-top: 2rem; max-width: 46rem; border-radius: 6px; overflow: hidden; background: #fff; border: 1px solid rgba(22,38,42,.15); }
-.form-frame iframe { display: block; width: 100%; height: 1250px; border: 0; }
+.form-frame iframe { display: block; width: 100%; height: 780px; border: 0; }
+@media (max-width: 40rem) { .form-frame iframe { height: 900px; } }
 
 /* Potluck and games */
 .section--bring { background: var(--fir); color: var(--mist); }
@@ -186,3 +187,61 @@ a { color: inherit; }
   .hero__content { padding-bottom: clamp(2rem, 7vh, 4.5rem); }
   .hero__names { font-size: clamp(5rem, 11vw, 9.5rem); }
 }
+
+/* Button and note */
+.btn--big {
+  padding: 1.35rem 2.8rem; font-size: clamp(1.25rem, 1.05rem + 1vw, 1.7rem);
+  box-shadow: 0 10px 30px rgba(184,40,111,.45);
+}
+.note.center { margin-inline: auto; text-align: center; }
+
+/* About us with photo */
+.about { display: grid; gap: 3rem 4rem; align-items: center; }
+.about__text .lede { margin-top: 0; }
+@media (min-width: 52rem) { .about { grid-template-columns: 1.1fr .9fr; } }
+.polaroid {
+  position: relative; margin: 0 auto; max-width: 30rem; padding: .9rem .9rem 0;
+  background: #fff; border-radius: 3px; transform: rotate(2.5deg);
+  box-shadow: 0 18px 40px rgba(22,38,42,.28), 0 2px 6px rgba(22,38,42,.18);
+  transition: transform .4s ease;
+}
+.polaroid:hover { transform: rotate(0deg) scale(1.02); }
+.polaroid img { width: 100%; height: auto; border-radius: 1px; }
+.polaroid figcaption { padding: .9rem 0 1.1rem; text-align: center; font: italic 400 var(--step-0)/1 var(--font-body); color: var(--fir-soft); }
+.polaroid::before {
+  content: ""; position: absolute; top: -.9rem; left: 50%; width: 6.5rem; height: 1.9rem;
+  transform: translateX(-50%) rotate(-3deg); background: rgba(224,170,74,.65); border-radius: 2px;
+}
+
+/* Little touches (only for people who haven't asked for reduced motion) */
+.fireflies { position: absolute; inset: 0; z-index: 2; overflow: hidden; pointer-events: none; }
+.fireflies span {
+  position: absolute; bottom: -10px; width: var(--s); height: var(--s); border-radius: 50%;
+  background: radial-gradient(circle, #ffe9a8 0%, rgba(224,170,74,.7) 45%, transparent 70%);
+  opacity: 0; animation: drift var(--t) linear var(--d) infinite;
+}
+@keyframes drift {
+  0% { transform: translate(0, 0); opacity: 0; }
+  10% { opacity: .9; }
+  50% { transform: translate(var(--x), -45vh); opacity: .6; }
+  90% { opacity: .85; }
+  100% { transform: translate(calc(var(--x) * -1), -95vh); opacity: 0; }
+}
+@keyframes slow-zoom { from { transform: scale(1); } to { transform: scale(1.07); } }
+@keyframes glow { 0%, 100% { box-shadow: 0 10px 30px rgba(184,40,111,.4); } 50% { box-shadow: 0 10px 44px rgba(184,40,111,.75); } }
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__photo { animation: slow-zoom 26s ease-in-out infinite alternate; }
+  .btn--big { animation: glow 2.8s ease-in-out infinite; }
+  .btn { transition: background .2s, transform .2s; }
+  .btn:hover { transform: translateY(-2px) scale(1.03); }
+  .js-reveal .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+  .js-reveal .reveal.in { opacity: 1; transform: none; }
+  .gallery li { transition: transform .3s ease; }
+  .gallery li:hover { transform: rotate(-1.2deg); }
+  .gallery li:nth-child(even):hover { transform: rotate(1.2deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fireflies { display: none; }
+}
+.summary:empty { display: none; }

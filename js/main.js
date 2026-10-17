@@ -5,7 +5,20 @@
   var target = new Date('2027-08-06T00:00:00-06:00').getTime();
   var days = Math.ceil((target - Date.now()) / 86400000);
   var label = el.parentElement;
-  if (days > 1) { el.textContent = days; }
+  if (days > 1) {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { el.textContent = days; }
+    else {
+      var start = null;
+      var tick = function (t) {
+        if (start === null) start = t;
+        var k = Math.min((t - start) / 1400, 1);
+        el.textContent = Math.round(days * (1 - Math.pow(1 - k, 3)));
+        if (k < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+  }
   else if (days === 1) { el.textContent = '1'; label.lastElementChild.textContent = 'day to go'; }
   else { label.textContent = 'See you in the mountains.'; }
 })();
@@ -168,4 +181,36 @@
   var link = document.getElementById('map-link');
   link.href = url;
   link.hidden = false;
+})();
+
+// Fireflies in the hero and gentle fade-ins while scrolling (skipped for reduced-motion)
+(function () {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var hero = document.querySelector('.hero');
+  if (hero) {
+    var box = document.createElement('div');
+    box.className = 'fireflies';
+    box.setAttribute('aria-hidden', 'true');
+    for (var i = 0; i < 16; i++) {
+      var s = document.createElement('span');
+      s.style.left = (Math.random() * 100) + '%';
+      s.style.setProperty('--s', (4 + Math.random() * 6) + 'px');
+      s.style.setProperty('--t', (10 + Math.random() * 12) + 's');
+      s.style.setProperty('--d', '-' + (Math.random() * 20) + 's');
+      s.style.setProperty('--x', (Math.random() * 90 - 45) + 'px');
+      box.appendChild(s);
+    }
+    hero.appendChild(box);
+  }
+
+  if (!('IntersectionObserver' in window)) return;
+  var items = document.querySelectorAll('.section__inner > *');
+  document.documentElement.classList.add('js-reveal');
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(function (el) { el.classList.add('reveal'); io.observe(el); });
 })();
