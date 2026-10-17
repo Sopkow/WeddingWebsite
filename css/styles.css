@@ -1,0 +1,110 @@
+/* Design tokens: Mt Robson in August. Deep fir, glacier-lake water, fireweed, larch gold. */
+:root {
+  --fir: #16262a;
+  --fir-soft: #22383d;
+  --glacier: #cfe7e3;
+  --mist: #f1f4f2;
+  --fireweed: #b8286f;
+  --larch: #e0aa4a;
+  --ink: var(--fir);
+
+  --font-display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+  --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+
+  --step--1: clamp(0.88rem, 0.85rem + 0.1vw, 0.95rem);
+  --step-0: clamp(1.06rem, 1rem + 0.25vw, 1.2rem);
+  --step-1: clamp(1.35rem, 1.2rem + 0.6vw, 1.7rem);
+  --step-2: clamp(1.8rem, 1.4rem + 1.6vw, 2.8rem);
+  --step-hero: clamp(3.4rem, 1.5rem + 11vw, 9.5rem);
+
+  --space: clamp(1.25rem, 4vw, 3rem);
+  --measure: 62ch;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--mist);
+  color: var(--ink);
+  font: 400 var(--step-0)/1.65 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--fireweed); outline-offset: 3px; }
+
+.skip-link {
+  position: absolute; left: var(--space); top: -4rem;
+  background: var(--mist); color: var(--fir); padding: .5rem 1rem; z-index: 20;
+}
+.skip-link:focus { top: .75rem; }
+
+/* Navigation */
+.site-nav {
+  position: absolute; inset: 0 0 auto 0; z-index: 10;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.1rem var(--space);
+  font: 500 var(--step--1)/1 var(--font-display);
+  color: var(--mist);
+}
+.site-nav a { text-decoration: none; }
+.site-nav ul { display: flex; gap: clamp(1rem, 3vw, 2rem); list-style: none; margin: 0; padding: 0; }
+.site-nav a:hover { text-decoration: underline; text-underline-offset: 6px; }
+.monogram { font-weight: 800; font-size: 1.15rem; letter-spacing: .01em; }
+
+/* Hero */
+.hero {
+  position: relative; min-height: 100svh; display: grid; align-items: end;
+  color: var(--mist); background: var(--fir); overflow: hidden;
+}
+.hero__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 55% 30%; }
+.hero::after {
+  content: ""; position: absolute; inset: 0;
+  background:
+    linear-gradient(to top, rgba(22,38,42,.92) 0%, rgba(22,38,42,.55) 38%, rgba(22,38,42,.05) 70%),
+    linear-gradient(to bottom, rgba(22,38,42,.55), transparent 22%);
+}
+.hero__content { position: relative; z-index: 2; padding: 0 var(--space) clamp(2rem, 6vw, 4.5rem); max-width: 80rem; }
+.hero__names {
+  margin: 0; font: 800 var(--step-hero)/.9 var(--font-display);
+  letter-spacing: -.035em;
+  animation: rise .9s cubic-bezier(.2,.7,.2,1) both;
+}
+.hero__names > span { display: block; }
+.hero__names .amp { color: var(--larch); font-weight: 500; }
+.hero__when { margin: 1.4rem 0 0; font: 500 var(--step-1)/1.25 var(--font-display); }
+.hero__where { margin: .35rem 0 0; font-size: var(--step-0); opacity: .92; }
+.hero__count {
+  margin: 1.6rem 0 0; display: inline-flex; align-items: baseline; gap: .6rem;
+  font: 500 var(--step--1)/1 var(--font-display);
+}
+.hero__count strong { font-size: var(--step-2); font-weight: 800; color: var(--larch); }
+
+.btn {
+  display: inline-block; margin-top: 1.8rem; padding: .85rem 1.6rem;
+  background: var(--fireweed); color: #fff; text-decoration: none;
+  font: 600 var(--step-0)/1 var(--font-display); border-radius: 999px;
+  transition: background .2s;
+}
+.btn:hover { background: #9e205d; }
+
+@keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero__names { animation: none; }
+}
+
+/* Sections */
+.section { padding: clamp(3rem, 9vw, 7rem) var(--space); }
+.section__inner { max-width: 72rem; margin: 0 auto; }
+.section h2 { margin: 0 0 1.2rem; font: 800 var(--step-2)/1.05 var(--font-display); letter-spacing: -.02em; }
+.lede { max-width: var(--measure); font-size: var(--step-1); line-height: 1.5; }
+
+.facts { margin: 2.5rem 0 0; display: grid; gap: 2rem 3rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+.facts div { border-left: 4px solid var(--fireweed); padding-left: 1.1rem; }
+.facts dt { font: 800 var(--step-1)/1.2 var(--font-display); }
+.facts dd { margin: .4rem 0 0; max-width: 34ch; }
+
+.site-footer { padding: 2.5rem var(--space); background: var(--fir); color: var(--glacier); font-size: var(--step--1); }
+.site-footer p { margin: 0 auto; max-width: 72rem; }
