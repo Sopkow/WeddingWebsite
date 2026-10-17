@@ -22,6 +22,8 @@
     <nav class="site-nav" aria-label="Main">
       <a class="monogram" href="#top">A &amp; B</a>
       <ul>
+        <li><a href="#story">Our story</a></li>
+        <li><a href="#gallery">Photos</a></li>
         <li><a href="#details">Details</a></li>
       </ul>
     </nav>
@@ -36,6 +38,48 @@
   </header>
 
   <main>
+
+    <section class="section section--story" id="story">
+      <div class="section__inner">
+        <h2>Our story</h2>
+        <div class="story">
+          <div class="story__text">
+            <p class="lede">We met in Victoria, BC on October 25, 2019, over tacos. It was supposed to be a get-to-know-each-other dinner. A few days later we turned it into a camping trip.</p>
+            <p>The plan was Bamfield. The reality was hours of Vancouver Island back roads, and we figured out too late that we’d forgotten most of the food and all the bedding we needed. Somehow we made a good team anyway. A kind older couple spotted us, took us across the channel by boat, and gave us a campsite on their private beach, looking out over the Pacific.</p>
+            <p>That weekend kicked everything off. Before long we’d bought our first home together, a live-aboard sailboat named Nyala, while Bran built his software company in downtown Victoria. Then Ava went after her dream of becoming a pilot in New Brunswick, and Bran followed soon after.</p>
+            <p class="lede">He asked, and she said yes. The proposal happened inside a tunnel of a million lights, with our dog right at our feet and a very surprised Ava.</p>
+            <p>There were happy tears, a long kiss, and a ring held up to the nearest camera. Then we sat in a giant red chair with Duke and tried to stop grinning.</p>
+            <p>Now we’re planning the party we actually want: a mountain weekend with the people we love, a long potluck table, and a lot of games.</p>
+          </div>
+          <ol class="moment" aria-label="The proposal, in three photos">
+            <li><img src="images/thumb/proposal-wide.jpg" alt="Bran down on one knee in a glowing tunnel of lights while Ava watches, with their dog beside him" loading="lazy" width="700" height="467"></li>
+            <li><img src="images/thumb/happy-tears.jpg" alt="Ava covering her face in happy tears while Bran grins at her" loading="lazy" width="700" height="467"></li>
+            <li><img src="images/thumb/kiss.jpg" alt="Ava and Bran kissing in front of a wall of golden lights" loading="lazy" width="700" height="467"></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--gallery" id="gallery">
+      <div class="section__inner">
+        <h2>Engagement photos</h2>
+        <p class="lede">A few favourites from the night. Tap any photo to see it bigger.</p>
+        <ul class="gallery">
+          <li><a href="images/full/pink-hug-tall.jpg" data-full="images/full/pink-hug-tall.jpg"><img src="images/thumb/pink-hug-tall.jpg" alt="Ava and Bran hugging among pink and blue hanging lights" loading="lazy" width="467" height="700"></a></li>
+          <li><a href="images/full/ring-wide.jpg" data-full="images/full/ring-wide.jpg"><img src="images/thumb/ring-wide.jpg" alt="Ava and Bran laughing as Ava shows off her ring" loading="lazy" width="700" height="467"></a></li>
+          <li><a href="images/full/teacup.jpg" data-full="images/full/teacup.jpg"><img src="images/thumb/teacup.jpg" alt="Ava and Bran touching foreheads in a giant teacup ride" loading="lazy" width="700" height="467"></a></li>
+          <li><a href="images/full/red-chair-dog.jpg" data-full="images/full/red-chair-dog.jpg"><img src="images/thumb/red-chair-dog.jpg" alt="Ava and Bran on a huge red velvet chair with their dog on their laps" loading="lazy" width="467" height="700"></a></li>
+          <li><a href="images/full/circle-hug.jpg" data-full="images/full/circle-hug.jpg"><img src="images/thumb/circle-hug.jpg" alt="Ava and Bran smiling inside a glowing white ring" loading="lazy" width="700" height="467"></a></li>
+          <li><a href="images/full/pink-hug.jpg" data-full="images/full/pink-hug.jpg"><img src="images/thumb/pink-hug.jpg" alt="Ava and Bran standing close in a curtain of purple and pink lights" loading="lazy" width="700" height="467"></a></li>
+          <li><a href="images/full/proposal-dog.jpg" data-full="images/full/proposal-dog.jpg"><img src="images/thumb/proposal-dog.jpg" alt="Bran petting Duke, who has a bow on its collar, as Ava smiles down at them" loading="lazy" width="467" height="700"></a></li>
+          <li><a href="images/full/cheek-purple.jpg" data-full="images/full/cheek-purple.jpg"><img src="images/thumb/cheek-purple.jpg" alt="Ava smiling as Bran leans in, bathed in blue and purple light" loading="lazy" width="700" height="467"></a></li>
+          <li><a href="images/full/pink-close.jpg" data-full="images/full/pink-close.jpg"><img src="images/thumb/pink-close.jpg" alt="Ava and Bran forehead to forehead in pink light" loading="lazy" width="467" height="700"></a></li>
+          <li><a href="images/full/ring-close.jpg" data-full="images/full/ring-close.jpg"><img src="images/thumb/ring-close.jpg" alt="Ava and Bran cheek to cheek with her ring hand held up to the camera" loading="lazy" width="700" height="467"></a></li>
+          <li><a href="images/full/cheek-close.jpg" data-full="images/full/cheek-close.jpg"><img src="images/thumb/cheek-close.jpg" alt="Ava smiling at the camera with her hand on Bran’s cheek" loading="lazy" width="700" height="467"></a></li>
+        </ul>
+      </div>
+    </section>
+
     <section class="section" id="details">
       <div class="section__inner">
         <h2>A weekend in the mountains</h2>
@@ -48,6 +92,14 @@
       </div>
     </section>
   </main>
+
+
+  <dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+    <button class="lightbox__btn lightbox__close" type="button" aria-label="Close photo">&times;</button>
+    <button class="lightbox__btn lightbox__prev" type="button" aria-label="Previous photo">&lsaquo;</button>
+    <img class="lightbox__img" alt="">
+    <button class="lightbox__btn lightbox__next" type="button" aria-label="Next photo">&rsaquo;</button>
+  </dialog>
 
   <footer class="site-footer">
     <p>Ava &amp; Bran, August 2027.</p>
