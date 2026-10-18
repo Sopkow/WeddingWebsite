@@ -245,3 +245,6 @@ a { color: inherit; }
   .fireflies { display: none; }
 }
 .summary:empty { display: none; }
+
+/* Make sure the hidden attribute always wins over display rules */
+[hidden] { display: none !important; }
